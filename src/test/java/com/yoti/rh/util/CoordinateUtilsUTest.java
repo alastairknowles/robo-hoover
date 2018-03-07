@@ -30,7 +30,7 @@ public class CoordinateUtilsUTest {
     public void shouldAcceptCoordinateOnNwBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{0L, 3L};
+        Long[] point = new Long[]{0L, 2L};
         Assert.assertTrue(isInBounds(lower, upper, point));
     }
 
@@ -38,7 +38,7 @@ public class CoordinateUtilsUTest {
     public void shouldAcceptCoordinateOnNeBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{3L, 3L};
+        Long[] point = new Long[]{2L, 2L};
         Assert.assertTrue(isInBounds(lower, upper, point));
     }
 
@@ -46,7 +46,7 @@ public class CoordinateUtilsUTest {
     public void shouldAcceptCoordinateOnSeBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{3L, 0L};
+        Long[] point = new Long[]{2L, 0L};
         Assert.assertTrue(isInBounds(lower, upper, point));
     }
 
@@ -62,7 +62,7 @@ public class CoordinateUtilsUTest {
     public void shouldRejectCoordinateBeyondNwBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{-1L, 4L};
+        Long[] point = new Long[]{-1L, 3L};
         Assert.assertFalse(isInBounds(lower, upper, point));
     }
 
@@ -70,7 +70,7 @@ public class CoordinateUtilsUTest {
     public void shouldRejectCoordinateBeyondNeBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{4L, 4L};
+        Long[] point = new Long[]{3L, 3L};
         Assert.assertFalse(isInBounds(lower, upper, point));
     }
 
@@ -78,7 +78,7 @@ public class CoordinateUtilsUTest {
     public void shouldRejectCoordinateBeyondSeBound() {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = new Long[]{3L, 3L};
-        Long[] point = new Long[]{4L, -1L};
+        Long[] point = new Long[]{3L, -1L};
         Assert.assertFalse(isInBounds(lower, upper, point));
     }
 

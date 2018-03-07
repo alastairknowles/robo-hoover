@@ -23,7 +23,6 @@ public class HooverInputDto {
     @NotEmpty
     private Long[][] dirtyPatches;
 
-    @NotEmpty
     @Pattern(regexp = "^[NSEW]+", message = "Invalid directions")
     private String directions;
 

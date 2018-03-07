@@ -40,25 +40,27 @@ public class HooverServiceImpl implements HooverService {
         int dirtyPatchesHoovered = 0;
 
         Long[] position = input.getStartPosition();
-        for (char direction : input.getDirections().toCharArray()) {
-            switch (Direction.valueOf(Character.toString(direction))) {
-                case N:
-                    position = moveNorthIfInBounds(lower, upper, position);
-                    break;
-                case S:
-                    position = moveSouthIfInBounds(lower, upper, position);
-                    break;
-                case E:
-                    position = moveEastIfInBounds(lower, upper, position);
-                    break;
-                case W:
-                    position = moveWestIfInBounds(lower, upper, position);
-                    break;
-            }
+        dirtyPatchesHoovered = incrementHooveredCountIfHoovered(position, dirtyPatches, dirtyPatchesHoovered);
 
-            Pair<Long, Long> positionKey = Pair.of(position[0], position[1]);
-            if (dirtyPatches.remove(positionKey) != null) {
-                dirtyPatchesHoovered++;
+        String directions = input.getDirections();
+        if (directions != null) {
+            for (char direction : input.getDirections().toCharArray()) {
+                switch (Direction.valueOf(Character.toString(direction))) {
+                    case N:
+                        position = moveNorthIfInBounds(lower, upper, position);
+                        break;
+                    case S:
+                        position = moveSouthIfInBounds(lower, upper, position);
+                        break;
+                    case E:
+                        position = moveEastIfInBounds(lower, upper, position);
+                        break;
+                    case W:
+                        position = moveWestIfInBounds(lower, upper, position);
+                        break;
+                }
+
+                dirtyPatchesHoovered = incrementHooveredCountIfHoovered(position, dirtyPatches, dirtyPatchesHoovered);
             }
         }
 
@@ -72,6 +74,12 @@ public class HooverServiceImpl implements HooverService {
                 .collect(Collectors.toMap(
                         dirtyPatch -> Pair.of(dirtyPatch[0], dirtyPatch[1]),
                         dirtyPatch -> dirtyPatch));
+    }
+
+    private int incrementHooveredCountIfHoovered(Long[] position, Map<Pair<Long, Long>, Long[]> dirtyPatches,
+                                                 int dirtyPatchesHoovered) {
+        Pair<Long, Long> positionKey = Pair.of(position[0], position[1]);
+        return dirtyPatches.remove(positionKey) == null ? dirtyPatchesHoovered : dirtyPatchesHoovered + 1;
     }
 
     private Long[] moveNorthIfInBounds(Long[] lower, Long[] upper, Long[] current) {
