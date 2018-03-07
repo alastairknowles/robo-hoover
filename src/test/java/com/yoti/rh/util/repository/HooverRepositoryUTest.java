@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 @SuppressWarnings("unchecked")
 @RunWith(MockitoJUnitRunner.class)
-public class HooveringEventRepositoryUTest {
+public class HooverRepositoryUTest {
 
     @Mock
     private ObjectRepository<HooveringEvent> repository;
