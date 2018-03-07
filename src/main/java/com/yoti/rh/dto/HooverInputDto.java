@@ -1,6 +1,7 @@
 package com.yoti.rh.dto;
 
 import com.yoti.rh.dto.validation.ValidDirtyPatches;
+import com.yoti.rh.dto.validation.ValidStartPosition;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @ValidDirtyPatches(message = "Invalid dirty patch definitions")
+@ValidStartPosition(message = "Invalid start position definition")
 public class HooverInputDto {
 
     @NotNull
@@ -18,6 +20,7 @@ public class HooverInputDto {
     @Size(min = 2, max = 2, message = "Invalid start position")
     private Long[] startPosition;
 
+    @NotEmpty
     private Long[][] dirtyPatches;
 
     @NotEmpty

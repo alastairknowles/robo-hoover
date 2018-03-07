@@ -14,22 +14,17 @@ public class ValidDirtyPatchesValidator implements ConstraintValidator<ValidDirt
 
     @Override
     public boolean isValid(HooverInputDto value, ConstraintValidatorContext context) {
-        Long[][] dirtyPatches = value.getDirtyPatches();
-        if (dirtyPatches == null || dirtyPatches.length == 0) {
-            return false;
-        }
-
-        Long[] startPosition = value.getStartPosition();
-        Long startPositionX = startPosition[0];
-        Long startPositionY = startPosition[1];
-        for (Long[] dirtyPatch : dirtyPatches) {
-            if (dirtyPatch == null || dirtyPatch.length != 2L) {
+        Long[] roomSize = value.getRoomSize();
+        Long roomSizeX = roomSize[0];
+        Long roomSizeY = roomSize[1];
+        for (Long[] dirtyPatch : value.getDirtyPatches()) {
+            if (dirtyPatch == null || dirtyPatch.length != 2) {
                 return false;
             }
 
             Long dirtyPatchX = dirtyPatch[0];
             Long dirtyPatchY = dirtyPatch[1];
-            if (dirtyPatchX > startPositionX || dirtyPatchY > startPositionY) {
+            if (dirtyPatchX > roomSizeX || dirtyPatchY > roomSizeY) {
                 return false;
             }
         }
