@@ -2,20 +2,22 @@ package com.yoti.rh.domain;
 
 import com.yoti.rh.dto.HooverInputDto;
 import com.yoti.rh.dto.HooverOutputDto;
+import org.dizitart.no2.objects.Id;
 
 public class HooveringEvent {
 
-    private transient Long id;
+    @Id
+    private String id;
 
     private HooverInputDto input;
 
     private HooverOutputDto output;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public HooveringEvent setId(Long id) {
+    public HooveringEvent setId(String id) {
         this.id = id;
         return this;
     }

@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,10 +26,10 @@ public class HooverServiceImpl implements HooverService {
     @Override
     public HooverOutputDto processInstruction(HooverInputDto input) {
         HooverOutputDto output = hoover(input);
-        HooveringEvent hooveringEvent = new HooveringEvent().setInput(input).setOutput(output);
-        hooveringEvent = hooverRepository.createHooveringEvent(hooveringEvent);
-        output.setId(hooveringEvent.getId());
-        return output;
+        String id = UUID.randomUUID().toString();
+        HooveringEvent hooveringEvent = new HooveringEvent().setId(id).setInput(input).setOutput(output);
+        hooverRepository.insertHooveringEvent(hooveringEvent);
+        return output.setId(id);
     }
 
     private HooverOutputDto hoover(HooverInputDto input) {

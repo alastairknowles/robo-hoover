@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -25,8 +26,6 @@ public class HooverServiceUTest {
 
     @Before
     public void setUp() {
-        when(hooverRepository.createHooveringEvent(any(HooveringEvent.class)))
-                .thenReturn(new HooveringEvent().setId(1L));
         hooverService = new HooverServiceImpl(hooverRepository);
     }
 
@@ -48,8 +47,8 @@ public class HooverServiceUTest {
                         new Long[]{0L, 0L}});
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
@@ -68,8 +67,8 @@ public class HooverServiceUTest {
                 .setDirections("NSEW");
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(0L, output.getEndPosition()[1].longValue());
         assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
@@ -88,8 +87,8 @@ public class HooverServiceUTest {
                 .setDirections("N");
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(1L, output.getEndPosition()[1].longValue());
         assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
@@ -108,8 +107,8 @@ public class HooverServiceUTest {
                 .setDirections("N");
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(1L, output.getEndPosition()[1].longValue());
         assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
@@ -128,8 +127,8 @@ public class HooverServiceUTest {
                 .setDirections("NS");
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(0L, output.getEndPosition()[1].longValue());
         assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
@@ -150,8 +149,8 @@ public class HooverServiceUTest {
                 .setDirections("NNNNESWWW");
 
         HooverOutputDto output = hooverService.processInstruction(input);
-        verify(hooverRepository, times(1)).createHooveringEvent(any(HooveringEvent.class));
-        assertEquals(1L, output.getId().longValue());
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
         assertEquals(0L, output.getEndPosition()[0].longValue());
         assertEquals(1L, output.getEndPosition()[1].longValue());
         assertEquals(2L, output.getDirtyPatchesHoovered().longValue());

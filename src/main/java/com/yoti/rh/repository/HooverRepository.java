@@ -4,6 +4,6 @@ import com.yoti.rh.domain.HooveringEvent;
 
 public interface HooverRepository {
 
-    HooveringEvent createHooveringEvent(HooveringEvent hooveringEvent);
+    void insertHooveringEvent(HooveringEvent hooveringEvent);
 
 }

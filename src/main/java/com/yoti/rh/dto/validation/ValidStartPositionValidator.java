@@ -7,10 +7,10 @@ import javax.validation.ConstraintValidatorContext;
 
 import static com.yoti.rh.util.CoordinateUtils.isInBounds;
 
-public class ValidStartPositionValidator implements ConstraintValidator<ValidDirtyPatches, HooverInputDto> {
+public class ValidStartPositionValidator implements ConstraintValidator<ValidStartPosition, HooverInputDto> {
 
     @Override
-    public void initialize(ValidDirtyPatches constraintAnnotation) {
+    public void initialize(ValidStartPosition constraintAnnotation) {
 
     }
 

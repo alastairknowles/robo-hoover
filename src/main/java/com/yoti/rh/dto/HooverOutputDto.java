@@ -2,17 +2,17 @@ package com.yoti.rh.dto;
 
 public class HooverOutputDto {
 
-    private Long id;
+    private String id;
 
     private Long[] endPosition;
 
     private Long dirtyPatchesHoovered;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public HooverOutputDto setId(Long id) {
+    public HooverOutputDto setId(String id) {
         this.id = id;
         return this;
     }
