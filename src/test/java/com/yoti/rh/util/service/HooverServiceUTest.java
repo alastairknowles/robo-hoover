@@ -77,7 +77,7 @@ public class HooverServiceUTest {
     }
 
     /**
-     * Minimal test verifies that we always hoover the final square when it is dirty
+     * Minimal test verifies that we always hoover the first square when it is dirty
      */
     @Test
     public void shouldHooverStartingSquare() {
