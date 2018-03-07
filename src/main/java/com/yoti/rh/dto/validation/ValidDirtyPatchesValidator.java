@@ -5,6 +5,8 @@ import com.yoti.rh.dto.HooverInputDto;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static com.yoti.rh.util.CoordinateUtils.isInBounds;
+
 public class ValidDirtyPatchesValidator implements ConstraintValidator<ValidDirtyPatches, HooverInputDto> {
 
     @Override
@@ -14,17 +16,10 @@ public class ValidDirtyPatchesValidator implements ConstraintValidator<ValidDirt
 
     @Override
     public boolean isValid(HooverInputDto value, ConstraintValidatorContext context) {
-        Long[] roomSize = value.getRoomSize();
-        Long roomSizeX = roomSize[0];
-        Long roomSizeY = roomSize[1];
+        Long[] lower = new Long[]{0L, 0L};
+        Long[] upper = value.getRoomSize();
         for (Long[] dirtyPatch : value.getDirtyPatches()) {
-            if (dirtyPatch == null || dirtyPatch.length != 2) {
-                return false;
-            }
-
-            Long dirtyPatchX = dirtyPatch[0];
-            Long dirtyPatchY = dirtyPatch[1];
-            if (dirtyPatchX > roomSizeX || dirtyPatchY > roomSizeY) {
+            if (dirtyPatch == null || dirtyPatch.length != 2 || !isInBounds(lower, upper, dirtyPatch)) {
                 return false;
             }
         }

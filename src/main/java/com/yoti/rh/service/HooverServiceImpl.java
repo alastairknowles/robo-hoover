@@ -25,6 +25,11 @@ public class HooverServiceImpl implements HooverService {
     }
 
     private HooverOutputDto hoover(HooverInputDto input) {
+
+
+        Long[] startPosition = input.getStartPosition();
+
+
         HooverOutputDto output = new HooverOutputDto();
         return output;
     }
