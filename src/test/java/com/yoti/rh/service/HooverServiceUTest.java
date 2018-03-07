@@ -1,10 +1,9 @@
-package com.yoti.rh.util.service;
+package com.yoti.rh.service;
 
 import com.yoti.rh.domain.HooveringEvent;
 import com.yoti.rh.dto.HooverInputDto;
 import com.yoti.rh.dto.HooverOutputDto;
 import com.yoti.rh.repository.HooverRepository;
-import com.yoti.rh.service.HooverServiceImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

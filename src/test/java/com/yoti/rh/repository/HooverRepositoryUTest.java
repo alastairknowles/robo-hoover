@@ -1,7 +1,6 @@
-package com.yoti.rh.util.repository;
+package com.yoti.rh.repository;
 
 import com.yoti.rh.domain.HooveringEvent;
-import com.yoti.rh.repository.HooverRepositoryImpl;
 import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.WriteResult;
 import org.dizitart.no2.objects.ObjectRepository;
