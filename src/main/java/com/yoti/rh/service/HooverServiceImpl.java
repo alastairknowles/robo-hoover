@@ -36,12 +36,9 @@ public class HooverServiceImpl implements HooverService {
         Long[] lower = new Long[]{0L, 0L};
         Long[] upper = input.getRoomSize();
 
-        // Put the dirty patches into an index structure so we can easily find out whether we hoovered them
-        Map<Pair<Long, Long>, Long[]> dirtyPatches = indexDirtyPatches(input);
-        int dirtyPatchesHoovered = 0;
-
         Long[] position = input.getStartPosition();
-        dirtyPatchesHoovered = incrementHooveredCountIfHoovered(position, dirtyPatches, dirtyPatchesHoovered);
+        Map<Pair<Long, Long>, Long[]> dirtyPatches = indexDirtyPatches(input);
+        int dirtyPatchesHoovered = incrementHooveredCountIfHoovered(position, dirtyPatches, 0);
 
         String directions = input.getDirections();
         if (directions != null) {
