@@ -55,16 +55,76 @@ public class HooverServiceUTest {
     }
 
     /**
-     * Minimal test verifies that we always skid when we hit the boundary, in all directions
+     * Minimal test verifies that we always skid when we hit the boundary going north
      */
     @Test
-    public void shouldSkidInAllTravelDirectionsWhenHittingBoundary() {
+    public void shouldSkidInNorthDirectionsWhenHittingBoundary() {
         HooverInputDto input = new HooverInputDto()
                 .setRoomSize(new Long[]{1L, 1L})
                 .setStartPosition(new Long[]{0L, 0L})
                 .setDirtyPatches(new Long[][]{
                         new Long[]{0L, 0L}})
-                .setDirections("NSEW");
+                .setDirections("N");
+
+        HooverOutputDto output = hooverService.processInstruction(input);
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
+        assertEquals(0L, output.getEndPosition()[0].longValue());
+        assertEquals(0L, output.getEndPosition()[1].longValue());
+        assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
+    }
+
+    /**
+     * Minimal test verifies that we always skid when we hit the boundary going south
+     */
+    @Test
+    public void shouldSkidInSouthDirectionsWhenHittingBoundary() {
+        HooverInputDto input = new HooverInputDto()
+                .setRoomSize(new Long[]{1L, 1L})
+                .setStartPosition(new Long[]{0L, 0L})
+                .setDirtyPatches(new Long[][]{
+                        new Long[]{0L, 0L}})
+                .setDirections("S");
+
+        HooverOutputDto output = hooverService.processInstruction(input);
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
+        assertEquals(0L, output.getEndPosition()[0].longValue());
+        assertEquals(0L, output.getEndPosition()[1].longValue());
+        assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
+    }
+
+    /**
+     * Minimal test verifies that we always skid when we hit the boundary going east
+     */
+    @Test
+    public void shouldSkidInEastDirectionsWhenHittingBoundary() {
+        HooverInputDto input = new HooverInputDto()
+                .setRoomSize(new Long[]{1L, 1L})
+                .setStartPosition(new Long[]{0L, 0L})
+                .setDirtyPatches(new Long[][]{
+                        new Long[]{0L, 0L}})
+                .setDirections("E");
+
+        HooverOutputDto output = hooverService.processInstruction(input);
+        verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
+        assertNotNull(output.getId());
+        assertEquals(0L, output.getEndPosition()[0].longValue());
+        assertEquals(0L, output.getEndPosition()[1].longValue());
+        assertEquals(1L, output.getDirtyPatchesHoovered().longValue());
+    }
+
+    /**
+     * Minimal test verifies that we always skid when we hit the boundary going west
+     */
+    @Test
+    public void shouldSkidInWestDirectionsWhenHittingBoundary() {
+        HooverInputDto input = new HooverInputDto()
+                .setRoomSize(new Long[]{1L, 1L})
+                .setStartPosition(new Long[]{0L, 0L})
+                .setDirtyPatches(new Long[][]{
+                        new Long[]{0L, 0L}})
+                .setDirections("W");
 
         HooverOutputDto output = hooverService.processInstruction(input);
         verify(hooverRepository, times(1)).insertHooveringEvent(any(HooveringEvent.class));
